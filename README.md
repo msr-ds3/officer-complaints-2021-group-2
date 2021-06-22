@@ -1,0 +1,1 @@
+# A replication project based on the May 2021 Financial Times article (https://www.ft.com/content/141182fc-7727-4af8-a555-5418fa46d09e) exploring the share of police in New York City, Philidelphia, and Chicago making up the most civilian complaints.
