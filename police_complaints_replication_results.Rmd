@@ -20,7 +20,29 @@ options(repr.plot.width=4, repr.plot.height=3)
 
 ```{r}
 library(readr)
-nyc_clean <- read_csv("nyc_clean.csv")
-View(nyc_clean)
+complaints <- read_csv("nyc_clean.csv")
+View(complaints)
+```
+
+- x axis group officers by percentage of how many complaints
+
+```{r}
+# grouping officers by percentage of how many complaints
+
+```
+
+all officers in that bucket/percent of all complaints
+
+- y axis by the percentage of complaints each group of officers have
+
+```{r}
+
+# The chart
+
+ggplot(complaints, aes(x = , y = )) +
+  geom_point() +
+  xlab('') +
+  ylab('') +
+  scale_y_continuous()
 ```
 
