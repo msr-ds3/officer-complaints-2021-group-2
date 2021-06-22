@@ -28,7 +28,11 @@ View(complaints)
 
 ```{r}
 # grouping officers by percentage of how many complaints
-
+complaints %>%
+distinct(ComplaintID, OfficerID) %>%
+group_by(OfficerID) %>%
+count() %>%
+arrange(desc(n))
 ```
 
 all officers in that bucket/percent of all complaints
@@ -46,3 +50,4 @@ ggplot(complaints, aes(x = , y = )) +
   scale_y_continuous()
 ```
 
+dig philly data and finish visualization
