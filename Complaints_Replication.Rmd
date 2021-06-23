@@ -25,6 +25,7 @@ View(complaints)
 - x axis group officers by percentage of how many complaints
 
 ```{r}
+### NYC DATA
 ### Arranging complaints and Officer ID's and grouping into deciles.
 ---{r}
 complaints <- nyc_clean %>%
