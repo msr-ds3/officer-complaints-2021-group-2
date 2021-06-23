@@ -1,6 +1,6 @@
 ---
 Project: Police Complaints Replication Results
-Created by: Karen Britt and Andrea Ramirez
+Created by: Andrea Ramirez 
 Created on: 06.22.21
 ---
 
