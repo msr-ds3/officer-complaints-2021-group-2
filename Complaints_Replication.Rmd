@@ -1,0 +1,46 @@
+---
+Project: Police Complaints Replication Results
+Created by: Andrea Ramirez and Karen Britt
+Created on: 06.22.21
+---
+
+```{r}
+library (readr)
+library(ggplot2)
+library(tidyverse)
+library(scales)
+library(modelr)
+library(lubridate)
+
+theme_set(theme_bw())
+options(repr.plot.width=4, repr.plot.height=3)
+```
+
+```{r}
+library(readr)
+complaints <- read_csv("nyc_clean.csv")
+View(complaints)
+```
+
+- x axis group officers by percentage of how many complaints
+
+```{r}
+### Arranging complaints and Officer ID's and grouping into deciles.
+---{r}
+complaints <- nyc_clean %>%
+  distinct(ComplaintID, OfficerID) %>%
+  group_by(OfficerID) %>%
+  count() %>%
+  rename(num_complaints = n) %>%
+  arrange(desc(num_complaints)) %>%
+  ungroup() %>%
+  mutate(decile = ntile(num_complaints, 10)) %>%
+group_by(decile) %>%
+summarize(total_complaints = sum(num_complaints)) %>%
+  mutate(percent_complaints = total_complaints / sum(total_complaints))
+---
+### Ploting data to replicate plot
+complaints %>%
+ggplot(aes(x = decile , y = percent_complaints)) + geom_bar(stat = "identity")
+
+```
