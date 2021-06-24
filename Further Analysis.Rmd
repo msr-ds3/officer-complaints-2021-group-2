@@ -1,0 +1,31 @@
+---
+title: "Further Analysis"
+author: "Andrea Ramirez"
+date: "6/23/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### A Further Analyss of the NYC data. 
+
+### Which gender has more complaints 
+gender <- nyc_clean %>% 
+  group_by(gender)
+  summerize(sum(gender)) %>% 
+    
+genger %>%
+    ggplot(aes(x = gender)) + geom_bar()
+    
+### How many complaints does an officer average out per year
+    
+    
+### Did Complainst Begin to be accumulated at the beggining of end of their career 
+  
+### How does the number of complaints change throughout the year   
+  
+  
+### How does the precinct/nighborhood the police work in affect the number of complaints 
+  
