@@ -1,16 +1,38 @@
 ---
-title: "Further Analysis"
+title: "Further Analyss of the NYC Data"
 author: "Andrea Ramirez and Karen Britt"
 date: "6/23/2021"
 last modified: "06/24/2021"
 output: html_document
 ---
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+First we will install the required packages for visualizations
+```{r}
+library (readr)
+library(ggplot2)
+library(tidyverse)
+library(scales)
+library(modelr)
+library(lubridate)
+theme_set(theme_bw())
+options(repr.plot.width=4, repr.plot.height=3)
 ```
 
-### A Further Analyss of the NYC data. 
+
+Now we will install the police complaint dataset
+```{r}
+
+```
+
+How does the number of police complaints change throughout the year?
+
+```{r}
+#line graph of the number of complaints on the y axis and the date on the x axis (each year is a diffrent line, months on the bottom, year is on legend )  
+
+
+```
+
+
+
 
 ### Which gender has more complaints 
 gender <- nyc_clean %>% 
@@ -25,8 +47,10 @@ genger %>%
     
 ### Did Complainst Begin to be accumulated at the beggining of end of their career 
   
-### How does the number of complaints change throughout the year   
-line graph of the number of complaints on the y axis and the date on the x axis (each year is a diffrent line, months on the bottom, year is on legend )  
+
+
   
 ### How does the precinct/nighborhood the police work in affect the number of complaints 
+
+
   
