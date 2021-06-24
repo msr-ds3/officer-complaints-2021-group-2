@@ -18,15 +18,17 @@ options(repr.plot.width=4, repr.plot.height=3)
 ```
 
 
-Now we will install the police complaint dataset
+Now we will install the police complaint data set
 ```{r}
-
+library(readr)
+complaints <- read_csv("nyc_clean.csv")
+View(complaints)
 ```
 
 How does the number of police complaints change throughout the year?
 
 ```{r}
-#line graph of the number of complaints on the y axis and the date on the x axis (each year is a diffrent line, months on the bottom, year is on legend )  
+#line graph of the number of complaints on the y axis and the date on the x axis (each year is a different line, months on the bottom, year is on legend )  
 
 
 ```
