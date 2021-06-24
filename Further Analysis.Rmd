@@ -22,17 +22,35 @@ Now we will install the police complaint data set
 ```{r}
 library(readr)
 complaints <- read_csv("nyc_clean.csv")
+
 View(complaints)
 ```
 
 How does the number of police complaints change throughout the year?
 
 ```{r}
-#line graph of the number of complaints on the y axis and the date on the x axis (each year is a different line, months on the bottom, year is on legend )  
+complaints_bydate <- complaints %>%
+  distinct(IncidentDate, ComplaintID) %>%
+  group_by(IncidentDate) %>%
+  summarise(count = n())
 
+View(complaints_bydate)
+```
+line graph of the number of complaints on the y axis and the date on the x axis (each year is a different line, months on the bottom, year is on legend )  
 
+```{r}
+#line graph of all years and complaints
+ggplot(data = complaints_bydate) + 
+  geom_line(mapping = aes(x = IncidentDate, y = count))
 ```
 
+```{r}
+# filters each year
+use mutate for a year column
+
+mutate(complains_bydate),
+
+```
 
 
 
