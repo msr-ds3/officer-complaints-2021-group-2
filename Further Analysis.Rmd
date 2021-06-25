@@ -26,7 +26,45 @@ complaints <- read_csv("nyc_clean.csv")
 View(complaints)
 ```
 
-How does the number of police complaints change throughout the year?
+### A Further Analyss of the NYC data. 
+
+### Which gender has more complaints 
+### NOTE there are significantly less women than men in the force 
+```{r}
+gender <- nyc_clean %>% 
+  distinct(ComplaintID, OfficerGender) %>%
+  group_by(OfficerGender) %>%
+  count() %>%
+  rename(num_complaints = n) 
+  
+gender %>%
+ggplot(aes(x = OfficerGender , y = num_complaints , color = OfficerGender , fill = OfficerGender)) + geom_bar(stat = "identity")
+```
+
+### How does the total number of complaints vary throughout the 10 years (2007 - 2017)
+```{r}
+Complaints_with_year <- nyc_clean %>%
+  distinct(ComplaintID, OfficerID, IncidentDate) %>%
+  group_by(IncidentDate, OfficerID) %>%
+  count() %>%
+  rename(num_complaints = n) %>%
+  arrange(desc(num_complaints)) %>%
+  mutate(IncidentYear = year(IncidentDate))
+
+  
+Complaints_per_year <- Complaints_and_year %>%
+  ungroup(OfficerID, IncidentDate) %>%
+  group_by(IncidentYear) %>%
+  count () %>%
+  rename(Sum_complaints = n) %>%
+  filter(IncidentYear == "2007" | IncidentYear == "2008" | IncidentYear == "2009" | IncidentYear == "2010" | IncidentYear == "2011" | IncidentYear == "2012" | IncidentYear == "2013" | IncidentYear == "2014" | IncidentYear == "2015" | IncidentYear == "2016" | IncidentYear == "2017")
+
+  
+Complaints_per_year %>%
+ggplot(aes(x = IncidentYear , y = Sum_complaints)) + geom_line() + ylim(2000,6000)
+```
+
+### How does the number of police complaints change throughout the year?
 
 ```{r}
 complaints_bydate <- complaints %>%
@@ -50,27 +88,4 @@ use mutate for a year column
 
 mutate(complains_bydate),
 
-```
-
-
-
-### Which gender has more complaints 
-gender <- nyc_clean %>% 
-  group_by(gender)
-  summerize(sum(gender)) %>% 
-    
-genger %>%
-    ggplot(aes(x = gender)) + geom_bar()
-    
-### How many complaints does an officer average out per year
-    
-    
-### Did Complainst Begin to be accumulated at the beggining of end of their career 
-  
-
-
-  
-### How does the precinct/nighborhood the police work in affect the number of complaints 
-
-
-  
+```  
