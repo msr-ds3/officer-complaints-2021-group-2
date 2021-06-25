@@ -29,6 +29,7 @@ View(complaints)
 How does the number of police complaints change throughout the year?
 
 ```{r}
+# groups year and keeps only count
 complaints_bydate <- complaints %>%
   distinct(IncidentDate, ComplaintID) %>%
   group_by(IncidentDate) %>%
@@ -45,16 +46,154 @@ ggplot(data = complaints_bydate) +
 ```
 
 ```{r}
-# filters each year
-use mutate for a year column
+# creates a year column
 
-mutate(complains_bydate),
+complaints_bydate <- complaints_bydate %>%
+  separate(IncidentDate, c("year", "month", "day"))
 
+View(complaints_bydate)
+```
+
+```{r}
+#groups by year
+#complaints_byyear <- complaints_bydate %>%
+#  group_by(year) %>%
+#  summarise(count = n())
+
+#View(complaints_byyear)
+```
+
+```{r}
+#line graph of all years and complaints
+ggplot(data = complaints_bydate) + 
+  geom_line(mapping = aes(x = year, y = count))
+```
+
+```{r}
+# creates filters for all years besides 2005 because there was only one value
+
+#2006 filter 
+twentysix_filter <- filter(complaints_bydate, year == "2006")
+
+#2007 filter 
+twentyseven_filter <- filter(complaints_bydate, year == "2007")
+
+#2008 filter 
+twentyeight_filter <- filter(complaints_bydate, year == "2008")
+
+#2009 filter 
+twentynine_filter <- filter(complaints_bydate, year == "2009")
+
+#2010 filter 
+twentyten_filter <- filter(complaints_bydate, year == "2010")
+
+#2011 filter 
+twentyeleven_filter <- filter(complaints_bydate, year == "2011")
+
+#2013 filter 
+twentytwelve_filter <- filter(complaints_bydate, year == "2012")
+
+#2014 filter 
+twentythirteen_filter <- filter(complaints_bydate, year == "2013")
+
+#2014 filter 
+twentyfourteen_filter <- filter(complaints_bydate, year == "2014")
+
+#2015 filter 
+twentyfifteen_filter <- filter(complaints_bydate, year == "2015")
+
+#2016 filter 
+twentysixteen_filter <- filter(complaints_bydate, year == "2016")
+
+#2017 filter 
+twentyseventeen_filter <- filter(complaints_bydate, year == "2017")
+```
+
+```{r}
+#line graph of complaints in 2006
+ggplot(data = twentysix_filter) + 
+  geom_line(mapping = aes(x = month, y = count)) + 
+  ggtitle("Number of Police Complaints each Month, NYC 2006")
+
+#line graph of complaints in 2007
+ggplot(data = twentyseven_filter) + 
+  geom_line(mapping = aes(x = month, y = count)) + 
+  ggtitle("Number of Police Complaints each Month, NYC 2007")
+
+#line graph of complaints in 2008
+ggplot(data = twentyeight_filter) + 
+  geom_line(mapping = aes(x = month, y = count)) + 
+  ggtitle("Number of Police Complaints each Month, NYC 2008")
+
+#line graph of complaints in 2009
+ggplot(data = twentynine_filter) + 
+  geom_line(mapping = aes(x = month, y = count)) + 
+  ggtitle("Number of Police Complaints each Month, NYC 2009")
+
+#line graph of complaints in 2010
+ggplot(data = twentyten_filter) + 
+  geom_line(mapping = aes(x = month, y = count)) + 
+  ggtitle("Number of Police Complaints each Month, NYC 2010")
+
+#line graph of complaints in 2011
+ggplot(data = twentyeleven_filter) + 
+  geom_line(mapping = aes(x = month, y = count)) + 
+  ggtitle("Number of Police Complaints each Month, NYC 2011")
+
+#line graph of complaints in 2012
+ggplot(data = twentytwelve_filter) + 
+  geom_line(mapping = aes(x = month, y = count)) + 
+  ggtitle("Number of Police Complaints each Month, NYC 2012")
+
+#line graph of complaints in 2013
+ggplot(data = twentythirteen_filter) + 
+  geom_line(mapping = aes(x = month, y = count)) + 
+  ggtitle("Number of Police Complaints each Month, NYC 2013")
+
+#line graph of complaints in 2014
+ggplot(data = twentyfourteen_filter) + 
+  geom_line(mapping = aes(x = month, y = count)) + 
+  ggtitle("Number of Police Complaints each Month, NYC 2014")
+
+#line graph of complaints in 2015
+ggplot(data = twentyfifteen_filter) + 
+  geom_line(mapping = aes(x = month, y = count)) + 
+  ggtitle("Number of Police Complaints each Month, NYC 2015")
+
+#line graph of complaints in 2016
+ggplot(data = twentysixteen_filter) + 
+  geom_line(mapping = aes(x = month, y = count)) + 
+  ggtitle("Number of Police Complaints each Month, NYC 2016")
+
+#line graph of complaints in 2017
+ggplot(data = twentyseventeen_filter) + 
+  geom_line(mapping = aes(x = month, y = count)) + 
+  ggtitle("Number of Police Complaints each Month, NYC 2017")
+```
+```{r}
+typeof(complaints_bydate$count)
+```
+
+```{r}
+# hypothesis testing, ANOVA test of count and year
+
+myAnovaResults <- aov(count ~
+year, data = complaints_bydate)
+summary(myAnovaResults)
+```
+```{r}
+# hypothesis testing, ANOVA test of count and year
+
+myAnovaResults <- aov(count ~
+month, data = complaints_bydate)
+summary(myAnovaResults)
 ```
 
 
 
-### Which gender has more complaints 
+
+Further Analysis:
+Which gender has more complaints 
 gender <- nyc_clean %>% 
   group_by(gender)
   summerize(sum(gender)) %>% 
@@ -62,15 +201,9 @@ gender <- nyc_clean %>%
 genger %>%
     ggplot(aes(x = gender)) + geom_bar()
     
-### How many complaints does an officer average out per year
-    
-    
-### Did Complainst Begin to be accumulated at the beggining of end of their career 
-  
-
-
-  
-### How does the precinct/nighborhood the police work in affect the number of complaints 
+How many complaints does an officer average out per year
+Did Complainst Begin to be accumulated at the beggining of end of their career 
+How does the precinct/nighborhood the police work in affect the number of complaints 
 
 
   
